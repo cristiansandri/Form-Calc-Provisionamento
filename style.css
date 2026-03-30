@@ -1,0 +1,454 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Figtree", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    color: var(--primaria);
+    text-decoration: none;
+}
+
+::-webkit-scrollbar {
+    width: 10px;   
+    background-color: rgba(226, 232, 240, 0.0);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d4d4d4;
+    border-radius: 15px;
+    border: 2px solid transparent; 
+    background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+/* ========= VARIÁVEIS DE CORES ======== */
+:root {
+    --primaria: #00a2ff;
+    --secundaria: #d4230c;
+    --escuro: #252525;
+    --maisescuro: #181818;
+    --claro: #e2e8f0;
+    --quaseclaro: #ebebebdc;
+    --vidro: rgba(255, 255, 255, 0.1);
+    --vidro-escuro: rgba(10, 28, 21, 0.6);
+}
+
+body {
+    background-image: url(img/background.webp);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: var(--maisescuro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--claro);
+}
+
+/* ======== FORMULÁRIO INICIAL E ESTADOS SEM SCROLL ======== */
+.form-section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sem-scroll {
+    overflow: hidden;
+}
+
+.formulario {
+    background: var(--vidro-escuro);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--vidro);
+    border-radius: 20px;
+    padding: 30px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin: 10px;
+}
+
+.formulario h1 {
+    color: var(--primaria);
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.formulario h2 {
+    color: var(--quaseclaro);
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.formulario p {
+    color: var(--quaseclaro);
+    font-size: 0.7rem;
+    margin: 25px;
+    font-weight: lighter;
+}
+
+.formulario br {
+    display: none;
+}
+
+/* ======== INPUTS E SELECTS ======== */
+.input,
+select,
+.entrada input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--vidro);
+    color: var(--claro);
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+select option {
+    background-color: var(--escuro);
+    color: var(--claro);
+}
+
+.input:focus,
+select:focus,
+.entrada input:focus {
+    border-color: var(--primaria);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 183, 255, 0.2);
+}
+
+.input::placeholder,
+.entrada input::placeholder {
+    color: rgba(226, 232, 240, 0.5);
+}
+
+/* ======== BOTÕES GERAIS ========== */
+button {
+    background-color: var(--primaria);
+    color: var(--escuro);
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #29dfff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 128, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* ======== MODAL (DIALOG) E BOTÃO FECHAR ======== */
+dialog {
+    margin: auto;
+    background: var(--vidro-escuro);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--primaria);
+    border-radius: 20px;
+    padding: 30px;
+    width: 90%;
+    max-width: 900px;
+    color: var(--claro);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8);
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(3px);
+}
+
+.close-modal {
+    display: block;
+    width: auto;
+    margin-left: -15px;
+    margin-top: -15px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    padding: 10px;
+    font-size: 0.8rem;
+    z-index: 100;
+    background: var(--vidro-escuro);
+    color: var(--claro);
+    border: 1px solid var(--vidro);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.close-modal:hover {
+    background-color: var(--secundaria);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+}
+
+.calculadora h1 {
+    color: var(--claro);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.calculadora p.info {
+    font-size: 0.85rem;
+    color: var(--quaseclaro);
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* ======== ÁREA DE ENTRADA DO MODAL (INPUTS DA CALCULADORA) ========= */
+.entrada {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.entrada label {
+    font-size: 0.9rem;
+    color: var(--primaria);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.entrada input {
+    margin-bottom: 0;
+}
+
+.mensagem-erro {
+    color: #ff4d4d;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    min-height: 20px;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 600px) {
+    .entrada {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ======== ÁREA DE RESULTADOS E GRÁFICOS ======== */
+.output-section {
+    display: none;
+    margin-top: 30px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Grid de Quadros Superiores (Contrato, Aberto, Atraso) */
+.resultado-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+@media (max-width: 800px) {
+    .resultado-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.quadro {
+    background: var(--vidro);
+    backdrop-filter: blur(5px);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+    border-bottom: 3px solid var(--primaria); /* Padrão, pode ajustar se quiser dinâmico */
+}
+
+.quadro:hover {
+    transform: translateY(-5px);
+    border-color: var(--primaria);
+}
+
+/* Estilos injetados pelo JS nos quadros */
+.value-display {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.label-display {
+    font-size: 0.75rem;
+    color: var(--quaseclaro);
+    line-height: 1.2;
+}
+
+/* Container do Gráfico e Informações Laterais */
+.chart-and-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid var(--vidro);
+    margin-bottom: 25px;
+}
+
+#chart-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    flex: 1 1 200px;
+    max-width: 250px;
+}
+
+#chart-center-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    pointer-events: none;
+}
+
+#chart-center-text .percentage {
+    display: block;
+    font-size: 2rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+}
+
+#chart-center-text .footer-label {
+    display: block;
+    font-size: 0.6rem;
+    color: var(--quaseclaro);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
+}
+
+/* Quadro de Informações ao lado do gráfico */
+.info-quadro {
+    flex: 2 1 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    border-radius: 12px;
+    background: var(--vidro);
+    border-left: 5px solid #ccc; /* Cor substituída pelas classes variant */
+}
+
+.info-quadro span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 8px;
+}
+
+.info-quadro span:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.info-quadro .label {
+    color: var(--quaseclaro);
+    font-weight: 300;
+}
+
+.info-quadro .value {
+    font-weight: bold;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+/* Variantes de cores controladas pelo JS no info-quadro */
+.verde-variant { border-left-color: #28a745; }
+.amarelo-variant { border-left-color: #ffc107; }
+.vermelho-variant { border-left-color: #dc3545; }
+
+/* Texto Explicativo (Baseado no .description-box) */
+.texto-explicativo {
+    background: rgba(105, 105, 105, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--quaseclaro);
+    border-left: 4px solid var(--primaria);
+    margin-bottom: 25px;
+}
+
+.texto-explicativo p {
+    margin-bottom: 10px;
+}
+.texto-explicativo p:last-child {
+    margin-bottom: 0;
+}
+
+/* ======== BOTÕES FINAIS (WHATSAPP E IMPRIMIR) ======== */
+#whatsapp-btn, #imprimir-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#whatsapp-btn {
+    background: #25D366;
+    color: #fff;
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+    margin-bottom: 10px;
+}
+
+#whatsapp-btn:hover {
+    background: #1eb954;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+}
+
+#imprimir-btn {
+    background: transparent;
+    border: 1px solid var(--quaseclaro);
+    color: var(--quaseclaro);
+}
+
+#imprimir-btn:hover {
+    background: rgba(182, 21, 21, 0.1);
+    box-shadow: 0 10px 25px rgba(37, 156, 211, 0.4);
+    color: #fff;
+}

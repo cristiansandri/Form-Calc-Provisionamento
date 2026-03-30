@@ -7,6 +7,33 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <title>Avaliação Provisionamento Bancário</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+
+    <!-- Meta Pixel - Calculadora Provisionamento Bancário -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', '1282037809527841'); // Pixel ID
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1282037809527841&ev=PageView&noscript=1" />
+    </noscript>
 </head>
 
 
@@ -14,8 +41,8 @@
     <section class="form-section">
         <form id="form-juros-abusivos" class="formulario">
             <div>
-                <h1>Avaliação Redução de dívidas</h1>
-                <h2>Insira suas informações para prosseguir para a calculadora:</h2>
+                <h1>Avaliação Redução de Dívidas</h1>
+                <h2>Insira suas informações para prosseguir para a calculadora de Redução de Dívidas</h2>
 
                 <input class="input" type="text" name="nome" placeholder="Nome Completo" required><br><br>
                 <input class="input" type="email" name="email" placeholder="Email" required><br><br>
@@ -47,10 +74,74 @@
         <button class="close-modal" type="butto">
             <i class="fa-solid fa-x"></i>
         </button>
+
+        <div class="calculadora">
+            <h1><b>Calculadora de Redução de Dívidas</b></h1>
+            <p class="info">
+                Nossa Calculadora tem como base a resolução do <b>Provisionamento Bancário.</b> Quanto maior o atraso da
+                dívida, maior o valor que o banco considera perder na quitação do débito, então maiores são as chances
+                de obter <b>redução nos valores.</b>
+            </p>
+
+            <div class="input-section">
+                <div class="entrada">
+                    <div>
+                        <label for="valor-parcelas">Valor das Parcelas:</label>
+                        <input type="text" id="valor-parcelas" placeholder="R$ 0,00" oninput="formatarMoeda(this)" />
+                    </div>
+                    <div>
+                        <label for="total-parcelas">Total de Parcelas:</label>
+                        <input type="number" id="total-parcelas" placeholder="0" min="1" />
+                    </div>
+                    <div>
+                        <label for="parcelas-pagas">Parcelas Já Pagas:</label>
+                        <input type="number" id="parcelas-pagas" placeholder="0" min="0" />
+                    </div>
+                    <div>
+                        <label for="meses-atraso">Meses em Atraso:</label>
+                        <input type="number" id="meses-atraso" placeholder="0" min="0" />
+                    </div>
+                </div>
+
+                <div class="mensagem-erro" id="mensagem-erro"></div>
+
+                <button onclick="calcularProvisionamento()" id="calcular-btn">Calcular Provisionamento</button>
+            </div>
+
+            <div class="output-section" id="resultados">
+                <div class="resultado-grid">
+                    <div class="quadro" id="valor-total-contrato"></div>
+                    <div class="quadro" id="divida-em-aberto"></div>
+                    <div class="quadro" id="valor-total-atraso"></div>
+                </div>
+
+                <div class="chart-and-info">
+                    <div id="chart-container">
+                        <canvas id="provisionamento-chart"></canvas>
+                        <div id="chart-center-text">
+                            <span class="percentage">0%</span>
+                            <span class="footer-label">% PROVISIONADO</span>
+                        </div>
+                    </div>
+                    <div class="info-quadro">
+                        <span><span class="label">Classificação:</span> <span class="value"
+                                id="classificacao-divida">N/A</span></span>
+                        <span><span class="label">Valor Total Provisionado:</span> <span class="value"
+                                id="valor-provisionado">R$ 0,00</span></span>
+                    </div>
+                </div>
+
+                <div class="texto-explicativo" id="texto-explicativo"></div>
+
+                <button id="whatsapp-btn" onclick="redirecionarWhatsApp()">Contato via WhatsApp</button>
+                <button id="imprimir-btn" onclick="imprimirResultados()">Salvar Resultados</button>
+            </div>
+        </div>
     </dialog>
 
 
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <script src="app.js"></script>
 </body>
 
