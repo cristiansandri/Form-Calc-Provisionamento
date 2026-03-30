@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <title>Avaliação Provisionamento Bancário</title>
+</head>
+
+
+<body>
+    <section class="form-section">
+        <form id="form-juros-abusivos" class="formulario">
+            <div>
+                <h1>Avaliação Redução de dívidas</h1>
+                <h2>Insira suas informações para prosseguir para a calculadora:</h2>
+
+                <input class="input" type="text" name="nome" placeholder="Nome Completo" required><br><br>
+                <input class="input" type="email" name="email" placeholder="Email" required><br><br>
+                <input class="input" type="tel" id="telefone" name="telefone" placeholder="Telefone" maxlength="15"
+                    required><br><br>
+
+                <select id="valor-divida" name="valor_divida" required>
+                    <option value="" disabled selected>Selecione o valor da dívida</option>
+                    <option value="Abaixo de R$50 mil">Abaixo de R$50 mil</option>
+                    <option value="Entre R$50 mil e R$350 mil">Entre R$50 mil e R$350 mil</option>
+                    <option value="Acima de R$350 mil">Acima de R$350 mil</option>
+                </select>
+
+                <br><br>
+
+                <button type="button" class="btn-prosseguir" data-modal="calc-jur"
+                    onclick="processarFormulario(this)">Prosseguir</button>
+                <p>Ao clicar em <b>Prosseguir</b>, você concorda em fornecer suas informações e continuar com a
+                    avaliação de <b>juros abusivos.</p>
+                <p><a href="politica-privacidade.html"
+                        target="https://martinsfelix.com.br/politica-de-privacidade/">Política de Privacidade</a></b>
+                </p>
+            </div>
+        </form>
+    </section>
+
+
+    <dialog id="calc-jur">
+        <button class="close-modal" type="butto">
+            <i class="fa-solid fa-x"></i>
+        </button>
+    </dialog>
+
+
+
+    <script src="app.js"></script>
+</body>
+
+</html>
