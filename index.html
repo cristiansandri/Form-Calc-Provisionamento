@@ -14,7 +14,7 @@
         rel="stylesheet">
 
     <!-- Meta Pixel - Calculadora Provisionamento Bancário -->
-    <script>
+    <!--  <script>
         !function (f, b, e, v, n, t, s) {
             if (f.fbq) return; n = f.fbq = function () {
                 n.callMethod ?
@@ -27,17 +27,26 @@
         }(window, document, 'script',
             'https://connect.facebook.net/en_US/fbevents.js');
 
-        fbq('init', '1282037809527841'); // Pixel ID
+        fbq('init', '[InserirIdDoPixel]'); // ID do Pixel de rastreio da META
         fbq('track', 'PageView');
     </script>
     <noscript>
         <img height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=1282037809527841&ev=PageView&noscript=1" />
+            src="https://www.facebook.com/tr?id=[InserirIdDoPixel]&ev=PageView&noscript=1" />
     </noscript>
-</head>
+</head> -->
+
 
 
 <body>
+
+
+    <dialog id="modalAviso" class="modal-aviso">
+        <h1>Aviso</h1>
+        <p><b>Esse é um modelo.</b> Os links de redirecionamento, envio de dados e rastreio foram desativados para melhorar a sua experiência.</p>
+        <button id="fechar">Entendi</button>
+    </dialog>
+
     <section class="form-section">
         <form id="form-juros-abusivos" class="formulario">
             <div>
@@ -60,10 +69,10 @@
 
                 <button type="button" class="btn-prosseguir" data-modal="calc-jur"
                     onclick="processarFormulario(this)">Prosseguir</button>
+                    
                 <p>Ao clicar em <b>Prosseguir</b>, você concorda em fornecer suas informações e continuar com a
                     avaliação de <b>juros abusivos.</p>
-                <p><a href="politica-privacidade.html"
-                        target="https://martinsfelix.com.br/politica-de-privacidade/">Política de Privacidade</a></b>
+                <p><a href="" target="">Política de Privacidade</a></b>
                 </p>
             </div>
         </form>

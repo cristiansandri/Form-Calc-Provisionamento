@@ -49,7 +49,7 @@ async function enviarForm() {
     formData.append('fbp', getCookie('_fbp'));
     formData.append('fbc', getCookie('_fbc')); // Só vai ter valor aqui se vier de um anúncio
 
-    const url = "https://script.google.com/macros/s/AKfycbysYYubJ5ereC-meLfOd4Ckqk0CLvWaMKLkwzBuWqACnaf8lEtUwaYjeOOyZQropPKI/exec"; // URL do Apps Script 
+    const url = ""; // URL do Apps Script para integração de API de conversões e Google Sheets
 
     try {
         const response = await fetch(url, {
@@ -70,8 +70,7 @@ function processarFormulario(botao) {
         form.reportValidity();
         return;
     }
-    enviarEvento();
-    enviarForm();
+
 
     const modalId = botao.getAttribute('data-modal');
     const modal = document.getElementById(modalId);
@@ -80,7 +79,25 @@ function processarFormulario(botao) {
         modal.showModal();
         document.body.classList.add('sem-scroll');
     }
+    
+    enviarEvento();
+    enviarForm();
 }
+
+
+// ==================== Abrir POPUP de Aviso ==================== //
+    const modal = document.getElementById('modalAviso');
+    const btnFechar = document.getElementById('fechar');
+
+  // Abre automaticamente quando a página carregar
+  window.addEventListener('load', () => {
+        modal.showModal();
+  });
+
+  // Fecha ao clicar no botão
+  btnFechar.addEventListener('click', () => {
+        modal.close();
+  });
 
 
 // ==================== Fechar POPUP ==================== //
@@ -337,7 +354,7 @@ function redirecionarWhatsApp() {
         `Valor Total Provisionado: ${valorProvisionadoText}\n\n` +
         `Gostaria de discutir as oportunidades de negociação.`;
 
-    const numeroTelefone = "554284391133";
+    const numeroTelefone = "5542991088896";
     const urlWhatsApp = `https://wa.me/${numeroTelefone}?text=${encodeURIComponent(mensagemWhatsApp)}`;
     window.open(urlWhatsApp, '_blank');
 }
